@@ -1,0 +1,18 @@
+[Unit]
+Description=simulate_workload
+[Service]
+#MemoryAccouning=true
+#MemoryLimit=50M
+#MemoryMax=50M
+#CPUAccounting=1
+#AllowedCPUs=1
+#CPUQuota=5%
+#BlockIOAccounting=1
+#BlockIOWriteBandwidth=/dev/vda 5M
+#BlockIOWeight=10
+#ExecStart=/usr/bin/dd if=/dev/zero of=/myfile bs=1024 count=10000000 oflag=direct
+ExecStart=/bin/stress-ng --cpu 1
+#ExecStart=/bin/stress-ng --vm 2 --vm-bytes 128M
+Restart=always
+[Install]
+WantedBy=multi-user.target
